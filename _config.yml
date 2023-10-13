@@ -19,7 +19,7 @@ title: Dignite's Blog! # the main title
 tagline: When Nothing Goes Right, Go Left. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  OI, 信息技术, IT, 个人博客, 笔记
+  OI, 信息技术, IT, 个人博客, 笔记, 生活漫谈。
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -34,7 +34,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: dignite
+  name: Dignite
   email: i@amzcd.top # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -79,10 +79,8 @@ avatar: https://cdn.luogu.com.cn/upload/image_hosting/3enxgywp.png
 toc: true
 
 comments:
-   active: 'valine' # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active: 'valine' # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
-  # disqus:
-  #   shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   valine:
     comments: true            # 是否启用valine 
     leancloud_appid: T1AJVoOfpexaESeJrq4VcHBT-MdYXbMMI         # 填入你的APP ID 
