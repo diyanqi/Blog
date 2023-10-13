@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 refactor: true
 ---
 
@@ -16,124 +16,138 @@ refactor: true
 {% assign pinned_num = pinned.size | minus: offset %}
 
 {% if pinned_num > 0 %}
-{% for i in (offset..pinned.size) limit: pinned_num %}
-{% assign posts = posts | push: pinned[i] %}
-{% endfor %}
+  {% for i in (offset..pinned.size) limit: pinned_num %}
+    {% assign posts = posts | push: pinned[i] %}
+  {% endfor %}
 {% else %}
-{% assign pinned_num = 0 %}
+  {% assign pinned_num = 0 %}
 {% endif %}
 
 <!-- Get default posts -->
 
 {% assign default_beg = offset | minus: pinned.size %}
 
-{% if default_beg < 0 %} {% assign default_beg=0 %} {% endif %} {% assign default_num=paginator.posts | size | minus:
-    pinned_num %} {% assign default_end=default_beg | plus: default_num | minus: 1 %} {% if default_num> 0 %}
-    {% for i in (default_beg..default_end) %}
+{% if default_beg < 0 %}
+  {% assign default_beg = 0 %}
+{% endif %}
+
+{% assign default_num = paginator.posts | size | minus: pinned_num %}
+{% assign default_end = default_beg | plus: default_num | minus: 1 %}
+
+{% if default_num > 0 %}
+  {% for i in (default_beg..default_end) %}
     {% assign posts = posts | push: default[i] %}
-    {% endfor %}
-    {% endif %}
+  {% endfor %}
+{% endif %}
 
-    <div id="post-list">
-        {% for post in posts %}
-        <a href="{{ post.url | relative_url }}" class="card-wrapper">
-            <div class="card post-preview flex-md-row-reverse">
-                {% if post.image %}
-                {% if post.image.lqip %}
-                {% capture lqip %}lqip="{{ post.image.lqip }}"{% endcapture %}
-                {% endif %}
+<div id="post-list" class="flex-grow-1 px-xl-1">
+  {% for post in posts %}
+    <article class="card-wrapper card">
+      <a href="{{ post.url | relative_url }}" class="post-preview row g-0 flex-md-row-reverse">
+        {% assign card_body_col = '12' %}
 
-                {% assign src = post.image.path | default: post.image %}
-                {% unless src contains '//' %}
-                {% assign src = post.img_path | append: '/' | append: src | replace: '//', '/' %}
-                {% endunless %}
+        {% if post.image %}
+          {% assign src = post.image.path | default: post.image %}
+          {% unless src contains '//' %}
+            {% assign src = post.img_path | append: '/' | append: src | replace: '//', '/' %}
+          {% endunless %}
 
-                {% assign alt = post.image.alt | default: 'Preview Image' %}
+          {% assign alt = post.image.alt | xml_escape | default: 'Preview Image' %}
 
-                <img src="{{ src }}" w="15" h="8" alt="{{ alt }}" {{ lqip }}>
-                {% endif %}
+          {% assign lqip = null %}
 
-                <div class="card-body d-flex flex-column">
-                    <h1 class="card-title my-2 mt-md-0">
-                        {{ post.title }}
-                    </h1>
+          {% if post.image.lqip %}
+            {% capture lqip %}lqip="{{ post.image.lqip }}"{% endcapture %}
+          {% endif %}
 
-                    <div class="card-text post-content mt-0 mb-2">
-                        <p>
-                            {% include no-linenos.html content=post.content %}
-                            {{ content | markdownify | strip_html | truncate: 200 | escape }}
-                        </p>
-                    </div>
+          <div class="col-md-5">
+            <img src="{{ src }}" alt="{{ alt }}" {{ lqip }}>
+          </div>
 
-                    <div class="post-meta flex-grow-1 d-flex align-items-end">
-                        <div class="me-auto">
-                            <!-- posted date -->
-                            <i class="far fa-calendar fa-fw me-1"></i>
-                            {% include datetime.html date=post.date lang=lang %}
+          {% assign card_body_col = '7' %}
+        {% endif %}
 
-                            <!-- categories -->
-                            {% if post.categories.size > 0 %}
-                            <i class="far fa-folder-open fa-fw me-1"></i>
-                            <span class="categories">
-                                {% for category in post.categories %}
-                                {{ category }}
-                                {%- unless forloop.last -%},{%- endunless -%}
-                                {% endfor %}
-                            </span>
-                            {% endif %}
+        <div class="col-md-{{ card_body_col }}">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
 
-                            <!-- pageviews -->
-                            <i class="far fa-eye fa-fw me-1"></i>
-                            <em>
-                                <span class="waline-pageview-count" data-path="{{ post.url | relative_url }}">
-                                    <em id="pv" class="pageviews">
-                                        <i class="fas fa-spinner fa-spin fa-fw"></i>
-                                    </em>
-                                </span>
-                            </em>
-
-                            <!-- commentcount -->
-                            <i class="far fa-comment fa-fw me-1"></i>
-                            <em>
-                                <span class="waline-comment-count" data-path="{{ post.url | relative_url }}">
-                                    <em id="pv" class="pageviews">
-                                        <i class="fas fa-spinner fa-spin fa-fw"></i>
-                                    </em>
-                                </span>
-                            </em>
-                        </div>
-
-                        {% if post.pin %}
-                        <div class="pin ms-1">
-                            <i class="fas fa-thumbtack fa-fw"></i>
-                            <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <!-- .post-meta -->
-                </div>
-                <!-- .card-body -->
+            <div class="card-text content mt-0 mb-3">
+              <p>
+                {% include no-linenos.html content=post.content %}
+                {{ content | markdownify | strip_html | truncate: 200 | escape }}
+              </p>
             </div>
-        </a>
-        {% endfor %}
-    </div>
-    <!-- #post-list -->
 
-    {% if paginator.total_pages > 1 %}
-    {% include post-paginator.html %}
-    {% endif %}
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                {% include datetime.html date=post.date lang=lang %}
 
-    <script type="module">
-        import { pageviewCount } from 'https://github.elemecdn.com/@waline/client/dist/pageview.mjs';
-        import { commentCount } from 'https://github.elemecdn.com/@waline/client@v2/dist/comment.mjs';
+                <!-- categories -->
+                {% if post.categories.size > 0 %}
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    {% for category in post.categories %}
+                      {{ category }}
+                      {%- unless forloop.last -%},{%- endunless -%}
+                    {% endfor %}
+                  </span>
+                {% endif %}
 
-        pageviewCount({
-            serverURL: 'https://waline.amzcd.top',
-            path: window.location.pathname,
-            update: false
-        });
-        commentCount({
-            serverURL: 'https://waline.amzcd.top',
-            path: window.location.pathname
-        });
-    </script>
+                <!-- pageviews -->
+                <i class="far fa-eye fa-fw me-1"></i>
+                <em>
+                    <span class="waline-pageview-count" data-path="{{ post.url | relative_url }}">
+                        <em id="pv" class="pageviews">
+                            <i class="fas fa-spinner fa-spin fa-fw"></i>
+                        </em>
+                    </span>
+                </em>
+
+                <!-- commentcount -->
+                <i class="far fa-comment fa-fw me-1"></i>
+                <em>
+                    <span class="waline-comment-count" data-path="{{ post.url | relative_url }}">
+                        <em id="pv" class="pageviews">
+                            <i class="fas fa-spinner fa-spin fa-fw"></i>
+                        </em>
+                    </span>
+                </em>
+              </div>
+
+              {% if post.pin %}
+                <div class="pin ms-1">
+                  <i class="fas fa-thumbtack fa-fw"></i>
+                  <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
+                </div>
+              {% endif %}
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
+  {% endfor %}
+</div>
+<!-- #post-list -->
+
+{% if paginator.total_pages > 1 %}
+  {% include post-paginator.html %}
+{% endif %}
+
+<script type="module">
+    import { pageviewCount } from 'https://github.elemecdn.com/@waline/client/dist/pageview.mjs';
+    import { commentCount } from 'https://github.elemecdn.com/@waline/client@v2/dist/comment.mjs';
+
+    pageviewCount({
+        serverURL: 'https://waline.amzcd.top',
+        path: window.location.pathname,
+        update: false
+    });
+    commentCount({
+        serverURL: 'https://waline.amzcd.top',
+        path: window.location.pathname
+    });
+</script>
