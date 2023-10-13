@@ -9,16 +9,6 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
 
-  {% if page.layout == 'home' or page.layout == 'post' %}
-  {% if site.google_analytics.pv.proxy_endpoint %}
-  <meta name="pv-proxy-endpoint" content="{{ site.google_analytics.pv.proxy_endpoint }}">
-  {% endif %}
-
-  {% if site.google_analytics.pv.cache_path %}
-  <meta name="pv-cache-path" content="{{ site.google_analytics.pv.cache_path | relative_url }}">
-  {% endif %}
-  {% endif %}
-
   {% capture seo_tags %}
   {% seo title=false %}
   {% endcapture %}
@@ -53,7 +43,7 @@
     {{ site.title }}
   </title>
 
-  {% include favicons.html %}
+  {% include_cached favicons.html %}
 
   {% if site.resources.ignore_env != jekyll.environment and site.resources.self_hosted %}
   <link href="{{ site.data.origin[type].webfonts | relative_url }}" rel="stylesheet">
@@ -74,17 +64,6 @@
 
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-  {% if site.google_analytics.pv.proxy_endpoint %}
-  {% assign proxy_url = site.google_analytics.pv.proxy_endpoint
-  | replace: 'https://', ''
-  | split: '/'
-  | first
-  | prepend: 'https://'
-  %}
-  <link rel="preconnect" href="{{ proxy_url }}" crossorigin="use-credentials">
-  <link rel="dns-prefetch" href="{{ proxy_url }}">
-  {% endif %}
   {% endif %}
 
   <!-- Bootstrap -->
@@ -93,10 +72,14 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ site.data.origin[type].fontawesome.css | relative_url }}">
 
-  <link rel="stylesheet" href="{{ '/assets/css/jekyll-theme-chirpy.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/:THEME.css' | replace: ':THEME', site.theme | relative_url }}">
 
   {% if site.toc and page.toc %}
   <link rel="stylesheet" href="{{ site.data.origin[type].toc.css | relative_url }}">
+  {% endif %}
+
+  {% if page.layout == 'post' or page.layout == 'page' or page.layout == 'home' %}
+  <link rel="stylesheet" href="{{ site.data.origin[type]['lazy-polyfill'].css | relative_url }}">
   {% endif %}
 
   {% if page.layout == 'page' or page.layout == 'post' %}
@@ -111,7 +94,6 @@
   {% endunless %}
 
   {% include metadata-hook.html %}
-
   <link rel="stylesheet" href="https://github.elemecdn.com/@waline/client@v2/dist/waline-meta.css" />
   <!-- <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css" /> -->
   <!-- <script src='//github.elemecdn.com/@waline/client@v2/dist/waline.js'></script> -->
@@ -144,10 +126,10 @@
   <!-- 背景特效 -->
   <!-- <script src="/assets/js/change.js" type="text/javascript"></script> -->
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "i76i0t2y1e");
   </script>
 </head>
