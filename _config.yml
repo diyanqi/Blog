@@ -6,40 +6,40 @@ theme: jekyll-theme-chirpy
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: zh-CN
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Asia/Shanghai
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: Dignite's Blog! # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: When Nothing Goes Right, Go Left. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  OI, 信息技术, IT, 个人博客, 笔记
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: ""
+url: "https://www.amzcd.top"
 
 github:
-  username: github_username # change to your github username
+  username: diyanqi # change to your github username
 
 twitter:
-  username: twitter_username # change to your twitter username
+  username: dignite2333 # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: dignite
+  email: i@amzcd.top # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your twitter homepage
-    - https://github.com/username # change to your github homepage
+    - https://twitter.com/dignite2333 # change to your twitter homepage
+    - https://github.com/diyanqi # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -73,14 +73,22 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: https://cdn.luogu.com.cn/upload/image_hosting/3enxgywp.png
 
 # boolean type, the global switch for TOC in posts.
 toc: true
 
 comments:
-  active: # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+   active: 'valine' # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
+  # disqus:
+  #   shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  valine:
+    comments: true            # 是否启用valine 
+    leancloud_appid: T1AJVoOfpexaESeJrq4VcHBT-MdYXbMMI         # 填入你的APP ID 
+    leancloud_appkey: bCcWcozmfRqbwU6Zs2ZX7QrC        # 填入你的APP Key 
+    placeholder: 你猜我的评论区在等待谁？ # 空白评论栏的占位符 
+    avatar: identicon         # 默认头像，参考 https://valine.js.org/avatar.html 
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances settings › https://utteranc.es/

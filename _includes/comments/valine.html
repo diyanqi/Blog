@@ -1,0 +1,45 @@
+<div id="vcomments"></div>
+<script type="module">
+    import { init } from 'https://github.elemecdn.com/@waline/client/dist/waline.mjs';
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const bodyElement = document.getElementsByTagName('body')[0];
+    const htmlElement = document.getElementsByTagName('html')[0];
+    function syncColorMode() {
+        const datamode = htmlElement.getAttribute('data-mode');
+        if (datamode) {
+            bodyElement.setAttribute("color-mode", datamode);
+        } else {
+            if (darkModeMediaQuery.matches) {
+                bodyElement.setAttribute("color-mode", "dark");
+            } else {
+                bodyElement.setAttribute("color-mode", "light");
+            }
+        }
+    }
+    syncColorMode();
+    document.getElementById("waline_pageview").setAttribute("data-path", window.location.pathname);
+    document.getElementById("waline_comcount").setAttribute("data-path", window.location.pathname);
+    init({
+        el: '#vcomments',
+        serverURL: 'https://waline.amzcd.top',
+        reaction: true,
+        dark: 'body[color-mode="dark"]',
+        pageview: true,
+        comment: true,
+        emoji: [
+            '//github.elemecdn.com/@waline/emojis@1.1.0/bilibili',
+            '//github.elemecdn.com/@waline/emojis@1.1.0/tw-emoji'
+        ],
+        locale: {
+            placeholder: '你猜我的评论区在等待谁？（留下邮箱可收取回复通知）'
+        },
+        turnstileKey: "0x4AAAAAAAFWv6PMNbfWlJDz"
+    });
+    darkModeMediaQuery.addListener((event) => {
+        syncColorMode();
+    });
+    const observer = new MutationObserver((mutationsList) => {
+        syncColorMode();
+    });
+    observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
+</script>

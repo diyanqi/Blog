@@ -1,0 +1,45 @@
+<!-- The Footer -->
+
+<footer>
+    <div class="container px-lg-4">
+        <div class="d-flex justify-content-center align-items-center text-muted mx-md-3">
+            <p>
+                <a href="http://beian.miit.gov.cn/" target="_blank"
+                    rel="noopener">浙ICP备2023032699号</a>&nbsp;|&nbsp;
+
+                {%- capture _platform -%}
+                <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a>
+                {%- endcapture -%}
+
+                {%- capture _theme -%}
+                <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a>
+                {%- endcapture -%}
+
+                {{ site.data.locales[include.lang].meta | replace: ':PLATFORM', _platform | replace: ':THEME', _theme }}
+            </p>
+
+            <p>
+                {{- '©' }}
+                {{ 'now' | date: '%Y' }}
+                <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
+                {% if site.data.locales[include.lang].copyright.brief %}
+                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="{{ site.data.locales[include.lang].copyright.verbose }}">
+                    {{- site.data.locales[include.lang].copyright.brief -}}
+                </span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "7d36ec8781a7425fadc09b54370a8445"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <!--鼠标点击爆炸五颜六色特效-->
+    <canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:99999999;pointer-events:none;">
+    </canvas>
+    <canvas id="canvas"></canvas>
+    <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="/assets/js/fireworks.js"></script>
+</footer>

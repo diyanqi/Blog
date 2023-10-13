@@ -1,0 +1,55 @@
+<div id="access-tags">
+    <div class="panel-heading">最新评论</div>
+    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+        <div id="waline-recent"></div>
+    </ul>
+</div>
+
+<script type="module">
+    function removeTagsAndTruncate(inputHtml) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(inputHtml, 'text/html');
+        const nodes = doc.body.childNodes;
+        let textContent = '';
+        let imgLen = 0;
+        let textWithoutImg = '';
+
+        for (let i = 0; i < nodes.length; i++) {
+            const node = nodes[i];
+            if (node.nodeType === Node.TEXT_NODE) {
+                textContent += node.textContent.trim();
+                textWithoutImg += node.textContent.trim();
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                if (node.nodeName.toLowerCase() === 'img') {
+                    const alt = node.getAttribute('alt') || '';
+                    const src = node.getAttribute('src') || '';
+                    node.style.height = '1.25em';
+                    const imgstr = `<img src="${src}" alt="${alt}" style="height: 1.25em;" />`;
+                    imgLen += imgstr.length;
+                    textContent += imgstr;
+                } else if (node.nodeName.toLowerCase() !== 'script' && node.nodeName.toLowerCase() !== 'style') {
+                    textContent += removeTagsAndTruncate(node.innerHTML);
+                    textWithoutImg += removeTagsAndTruncate(node.innerHTML);
+                }
+            }
+        }
+
+        if (textContent.length-imgLen > 30) {
+            textContent = textWithoutImg.substring(0, 30) + '...';
+        }
+
+        return textContent;
+    }
+
+
+    import { RecentComments } from 'https://github.elemecdn.com/@waline/client/dist/waline.mjs';
+
+    RecentComments({
+        serverURL: 'https://waline.amzcd.top',
+        count: 5,
+    }).then(({ comments }) => {
+        document.getElementById('waline-recent').innerHTML =String(comments.map(
+            (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${comment.nick}: ${removeTagsAndTruncate(comment.comment)}</a></li>`
+        )).replaceAll(",", "");
+    });
+</script>
