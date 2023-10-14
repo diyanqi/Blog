@@ -1,9 +1,9 @@
-<div id="access-tags">
-    <div class="panel-heading">最新评论</div>
-    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+<section id="access-lastmod">
+    <h2 class="panel-heading">最新评论</h2>
+    <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
         <div id="waline-recent"></div>
     </ul>
-</div>
+</section>
 
 <script type="module">
     function removeTagsAndTruncate(inputHtml) {
@@ -34,7 +34,7 @@
             }
         }
 
-        if (textContent.length-imgLen > 30) {
+        if (textContent.length - imgLen > 30) {
             textContent = textWithoutImg.substring(0, 30) + '...';
         }
 
@@ -48,7 +48,7 @@
         serverURL: 'https://waline.amzcd.top',
         count: 5,
     }).then(({ comments }) => {
-        document.getElementById('waline-recent').innerHTML =String(comments.map(
+        document.getElementById('waline-recent').innerHTML = String(comments.map(
             (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${comment.nick}: ${removeTagsAndTruncate(comment.comment)}</a></li>`
         )).replaceAll(",", "");
     });
