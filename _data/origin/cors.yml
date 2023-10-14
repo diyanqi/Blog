@@ -59,5 +59,5 @@ mathjax:
   js: https://github.elemecdn.com/mathjax@3.2.2/es5/tex-chtml.js
 
 lazy-polyfill:
-  css: https://www.amzcd.top/css/loading-attribute-polyfill.min.css
-  js: https://www.amzcd.top/js/loading-attribute-polyfill.umd.min.js
+  css: https://www.amzcd.top/assets/css/loading-attribute-polyfill.min.css
+  js: https://www.amzcd.top/assets/js/loading-attribute-polyfill.umd.min.js
