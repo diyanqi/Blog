@@ -26,7 +26,7 @@
                     node.style.height = '1.25em';
                     const imgstr = `<img src="${src}" alt="${alt}" style="height: 1.25em;" />`;
                     imgLen += imgstr.length;
-                    textContent += imgstr;
+                    // textContent += imgstr;
                 } else if (node.nodeName.toLowerCase() !== 'script' && node.nodeName.toLowerCase() !== 'style') {
                     textContent += removeTagsAndTruncate(node.innerHTML);
                     textWithoutImg += removeTagsAndTruncate(node.innerHTML);
@@ -46,7 +46,7 @@
 
     RecentComments({
         serverURL: 'https://waline.amzcd.top',
-        count: 5,
+        count: 6,
     }).then(({ comments }) => {
         document.getElementById('waline-recent').innerHTML = String(comments.map(
             (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${comment.nick}: ${removeTagsAndTruncate(comment.comment)}</a></li>`

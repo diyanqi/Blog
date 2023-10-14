@@ -12,6 +12,6 @@ document.addEventListener('visibilitychange', function () {
         document.title = '(*/ω＼*) 噫又好啦 ~ ' + OriginTitle;
         titleTime = setTimeout(function () {
             document.title = OriginTitle;
-        }, 2000);
+        }, 2500);
     }
 });
