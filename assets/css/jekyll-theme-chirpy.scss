@@ -1,0 +1,13 @@
+---
+---
+
+@import 'main';
+
+/* append your custom style below */
+
+.preview-img img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
