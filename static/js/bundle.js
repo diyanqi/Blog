@@ -53362,13 +53362,13 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
       render() {
         return [UI.createElement("div", {
           ref: "Force"
-        }, UI.createElement("h4", null, "Force mode"), UI.createElement("p", null, "In this mode, there is a gravitation pull that acts on the nodes and keeps them in the center of the drawing area. Also, the nodes exert a force on each other, making the whole graph look and act like real objects in space."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Nodes support drag and drop."), UI.createElement("li", null, "At the end of the drop the node becomes fixed."), UI.createElement("li", null, "You can fix/unfix a node by simple click."))), UI.createElement("div", {
+        }, UI.createElement("h4", null, "力学模式"), UI.createElement("p", null, "在这种模式下，存在一个引力作用于节点，并将它们保持在绘图区域的中心。此外，节点之间也相互施加力的作用，使整个图形看起来像是真实中的物体。"), UI.createElement("p", null, "操作指南："), UI.createElement("ul", null, UI.createElement("li", null, "支持拖动节点；"), UI.createElement("li", null, "松开鼠标，节点静止不动；"), UI.createElement("li", null, "单击节点，固定/取消固定节点。"))), UI.createElement("div", {
           ref: "Draw"
-        }, UI.createElement("h4", null, "Draw mode"), UI.createElement("p", null, "This mode allows you to draw new nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Clicking anywhere on the graph canvas creates a new node."), UI.createElement("li", null, "Clicking on a node starts the drawing process of a new edge."), UI.createElement("li", null, "To cancel the new edge, click anywhere on the canvas."), UI.createElement("li", null, "To finish drawing the edge, click on the desired neighbour."))), UI.createElement("div", {
+        }, UI.createElement("h4", null, "创建模式"), UI.createElement("p", null, "在这个模式中，你可以添加新的边或节点。"), UI.createElement("p", null, "操作指南："), UI.createElement("ul", null, UI.createElement("li", null, "在画布上点击，创建新的节点；"), UI.createElement("li", null, "点击一个节点，拉出一条边；"), UI.createElement("li", null, "不想要这条边了？点击空白处以反悔；"), UI.createElement("li", null, "点击终点，完成画边。"))), UI.createElement("div", {
           ref: "Edit"
-        }, UI.createElement("h4", null, "Edit mode"), UI.createElement("p", null, "This mode allows you to edit nodes' labels and edges' costs."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node label to change it. Now you can start typing in order to edit the label. Click anywhere or press Enter to finish editing."), UI.createElement("li", null, "Click on an edge to change it's cost. Now you can start typing in order to edit the cost. Click anywhere or press Enter to finish editing."))), UI.createElement("div", {
+        }, UI.createElement("h4", null, "编辑模式"), UI.createElement("p", null, "在这个模式中，你可以编辑边的权值和点的标签。"), UI.createElement("p", null, "操作指南"), UI.createElement("ul", null, UI.createElement("li", null, "点击节点标签以进行更改。现在你可以开始输入以编辑标签。点击任意位置或按下Enter键完成编辑；"), UI.createElement("li", null, "点击边以更改其权值。现在你可以开始输入以编辑权值。点击任意位置或按下Enter键完成编辑。"))), UI.createElement("div", {
           ref: "Delete"
-        }, UI.createElement("h4", null, "Delete mode"), UI.createElement("p", null, "This mode allows you to delete nodes and/or edges."), UI.createElement("p", null, "Ways you can interact with the graph:"), UI.createElement("ul", null, UI.createElement("li", null, "Click on a node to delete it"), UI.createElement("li", null, "Click on an edge to delete it."))), UI.createElement("div", {
+        }, UI.createElement("h4", null, "删除模式"), UI.createElement("p", null, "在这个模式中，你可以删除边或点。"), UI.createElement("p", null, "操作指南："), UI.createElement("ul", null, UI.createElement("li", null, "点击一个节点，把它删掉；"), UI.createElement("li", null, "点击一条边，把它删掉。"))), UI.createElement("div", {
           ref: "Config",
           style: {
             "padding-left": "20px"
@@ -54142,7 +54142,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleDirected",
-          givenOptions: ["Undirected", "Directed"]
+          givenOptions: ["无向图", "有向图"]
         })), UI.createElement(GraphInputPanel, {
           ref: "inputPanel",
           style: {
@@ -54159,7 +54159,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleIndexType",
-          givenOptions: ["0-index", "1-index", "Custom Labels"]
+          givenOptions: ["从0计数", "从1计数", "自定义标签"]
         })), UI.createElement("div", {
           ref: "svgBlock",
           style: {
@@ -54199,7 +54199,7 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
         }, UI.createElement(RadioButtonGroup, {
           level: Level.PRIMARY,
           ref: "toggleViewMode",
-          givenOptions: ["Force", "Draw", "Edit", "Delete", "Config"]
+          givenOptions: ["力学结构", "新增", "编辑", "删除", "配置"]
         })), UI.createElement(GraphEditorLegend, {
           ref: "editorLegend",
           viewMode: "Force",
