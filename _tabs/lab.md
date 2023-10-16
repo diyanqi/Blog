@@ -12,7 +12,8 @@ order: 5
 
 <script>
     var list = [
-        ["🍋OIso🔍", "https://www.oiso.cf", "一款为 OIer 和开发者而生的搜索引擎"]
+        ["🍋OIso🔍", "https://www.oiso.cf", "一款为 OIer 和开发者而生的搜索引擎"],
+        ["CS Academy 图论画图", "/"]
     ];
     // 定义一个随机排序函数
     function randomSort() {
