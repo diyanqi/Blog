@@ -2,16 +2,16 @@
 
 cdns:
   # Google Fonts
-  - url: https://fonts.loli.net
-  - url: https://gstatic.loli.net
+  - url: https://fonts.googleapis.cn
+  - url: https://fonts.gstatic.cn
     args: crossorigin
-  - url: https://fonts.loli.net
+  - url: https://fonts.googleapis.cn
   # jsDelivr CDN
   - url: https://jsdelivr.codeqihan.com
 
 # fonts
 
-webfonts: https://fonts.loli.net/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap
+webfonts: https://fonts.googleapis.cn/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap
 
 # Libraries
 
