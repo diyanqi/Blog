@@ -9,7 +9,7 @@ order: 4
 
 ## 我是谁
 
-来自浙江 zz ，事一名学生，平时有兴趣会开发一些小程序。
+来自浙江 zz ，事一名高中生，平时有兴趣会开发一些小程序。
 
 退役 OI 选手，正在专心学习文化课。兴趣爱好是程序设计。
 
@@ -37,7 +37,7 @@ order: 4
 
 本站与 Microsoft Clarity 和 Microsoft Advertising 合作，通过行为指标、热图和会话重播来捕获您使用本站的方式以及与本站的互动，从而改进本站的浏览体验。我们使用第一和第三方 cookie 及其他跟踪技术获取网站使用数据，以确定本站的受欢迎程度和在线活动。此外，我们还将此信息用于网站优化、欺诈/安全目的和广告。有关 Microsoft 如何收集和使用您的数据的详细信息，请访问 [Microsoft 隐私声明](https://privacy.microsoft.com/privacystatement)。
 
----
+<!-- ---
 
 <div id="vcomments"></div>
 <script type="module">
@@ -79,4 +79,4 @@ order: 4
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script>
+</script> -->

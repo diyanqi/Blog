@@ -4,7 +4,7 @@ icon: fas fa-link
 order: 5
 ---
 
-### 欢迎互挂友链！可以在下方申请，我会第一时间回复您的！
+### 欢迎互挂友链～
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-4 mb-4" id="showPlace">
     
@@ -44,7 +44,7 @@ order: 5
 
 以上链接随机排序，每次刷新都会不一样～
 
----
+<!-- ---
 
 <div id="vcomments"></div>
 <script type="module">
@@ -86,4 +86,4 @@ order: 5
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script>
+</script> -->

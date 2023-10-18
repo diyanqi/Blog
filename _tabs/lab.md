@@ -13,7 +13,7 @@ order: 5
 <script>
     var list = [
         ["🍋OIso🔍", "https://www.oiso.cf", "一款为 OIer 和开发者而生的搜索引擎"],
-        ["CS Academy Graph Editor", "/app/graph_editor", "在线图论作图工具 源码来自 github.com/Eletary/graph_editor"]
+        // ["CS Academy Graph Editor", "/app/graph_editor", "在线图论作图工具 源码来自 github.com/Eletary/graph_editor"]
     ];
     // 定义一个随机排序函数
     function randomSort() {
@@ -38,7 +38,7 @@ order: 5
     }
 </script>
 
----
+<!-- ---
 
 <div id="vcomments"></div>
 <script type="module">
@@ -80,4 +80,4 @@ order: 5
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script>
+</script> -->
