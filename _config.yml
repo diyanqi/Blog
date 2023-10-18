@@ -79,7 +79,7 @@ avatar: https://cdn.luogu.com.cn/upload/image_hosting/3enxgywp.png
 toc: true
 
 comments:
-  active: 'valine' # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active:  # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
   valine:
     comments: true            # 是否启用valine 

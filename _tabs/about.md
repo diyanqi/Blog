@@ -21,7 +21,7 @@ order: 4
 
 本站使用 Cookies 来改善浏览体验（仅用作评论区身份验证）。如果您不同意，可以退出本站。
 
-使用 [Chirpy](https://chirpy.cotes.page/ "一个博客主题") 主题，由 [Jekyll](https://jekyllrb.com/ "一个博客框架") 构建。评论系统由 [Waline](https://github.com/walinejs/waline "一个评论系统") 驱动。
+使用 [Chirpy](https://chirpy.cotes.page/ "一个博客主题") 主题，由 [Jekyll](https://jekyllrb.com/ "一个博客框架") 构建。
 
 > 本站点于 2022 年 3 月 20 日由 Wordpress 迁移至 Jekyll ，故在此之前的文章可能会出现图片丢失或格式混乱的情况。
 {: .prompt-info }
