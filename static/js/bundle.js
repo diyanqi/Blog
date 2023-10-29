@@ -89623,3 +89623,5 @@ define('Bundle', ['exports', 'PublicState', 'EmojiMini'], (function (exports, Pu
 
 }));
 //# sourceMappingURL=bundle.js.map
+
+document.getElementsByClassName("navManager-27")[0].remove();
