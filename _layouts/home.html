@@ -80,6 +80,16 @@ refactor: true
                 <i class="far fa-calendar fa-fw me-1"></i>
                 {% include datetime.html date=post.date lang=lang %}
 
+                <!-- pageviews -->
+                <i class="far fa-eye fa-fw me-1"></i>
+                <em>
+                  <span class="pageview-count" data-path="{{ post.url | relative_url }}">
+                    <em id="pv" class="pageviews">
+                      <i class="fas fa-spinner fa-spin fa-fw"></i>
+                    </em>
+                  </span>
+                </em>
+
                 <!-- categories -->
                 {% if post.categories.size > 0 %}
                 <i class="far fa-folder-open fa-fw me-1"></i>
@@ -90,16 +100,6 @@ refactor: true
                   {% endfor %}
                 </span>
                 {% endif %}
-
-                <!-- pageviews -->
-                <i class="far fa-eye fa-fw me-1"></i>
-                <em>
-                  <span class="pageview-count" data-path="{{ post.url | relative_url }}">
-                    <em id="pv" class="pageviews">
-                      <i class="fas fa-spinner fa-spin fa-fw"></i>
-                    </em>
-                  </span>
-                </em>
 
                 <!-- commentcount -->
                 <!-- <i class="far fa-comment fa-fw me-1"></i>
