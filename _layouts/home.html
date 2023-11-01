@@ -92,14 +92,14 @@ refactor: true
                 {% endif %}
 
                 <!-- pageviews -->
-                <!-- <i class="far fa-eye fa-fw me-1"></i>
+                <i class="far fa-eye fa-fw me-1"></i>
                 <em>
-                  <span class="waline-pageview-count" data-path="{{ post.url | relative_url }}">
+                  <span class="pageview-count" data-path="{{ post.url | relative_url }}">
                     <em id="pv" class="pageviews">
                       <i class="fas fa-spinner fa-spin fa-fw"></i>
                     </em>
                   </span>
-                </em> -->
+                </em>
 
                 <!-- commentcount -->
                 <!-- <i class="far fa-comment fa-fw me-1"></i>
@@ -148,3 +148,29 @@ refactor: true
       path: window.location.pathname
     });
   </script> -->
+
+<script>
+  async function fetchPageViews() {
+      const pageViewElements = document.querySelectorAll('.pageview-count');
+      for (const element of pageViewElements) {
+          const path = element.getAttribute('data-path');
+          try {
+              const response = await fetch(`https://sl.amzcd.top${path}`, {
+                  method: 'GET'
+              });
+
+              if (response.ok) {
+                  const pageViewsData = await response.json();
+                  const pageviewsElement = element.querySelector('.pageviews');
+                  pageviewsElement.innerHTML = `${pageViewsData.views}`;
+              } else {
+                  throw new Error('Failed to fetch page views data');
+              }
+          } catch (error) {
+              console.error(error);
+          }
+      }
+  }
+  // 页面加载时调用 fetchPageViews 来获取页面浏览量
+  fetchPageViews();
+</script>
