@@ -168,8 +168,11 @@ refactor: true
         if (response.ok) {
             const pageViewsData = await response.json();
             cnt = 0;
-            console.log(pageViewsData);
-            // const pageViewsContainer = document.getElementById('pageViewsContainer');
+            for (const element of pageViewElements) {
+              const pageviewsElement = element.querySelector('.pageviews');
+              pageviewsElement.innerHTML = `${pageViewsData[cnt].views}`;
+              cnt++;
+            }
             // Process and display page views results here
         } else {
             throw new Error('Failed to fetch page views data');
