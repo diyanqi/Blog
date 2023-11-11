@@ -50,7 +50,7 @@ order: 5
 
 <div id="vcomments"></div>
 <script type="module">
-    import { init } from 'https://cdn.staticfile.org/waline/3.0.0-alpha.1/waline.min.js';
+    import { init } from 'https://cdn.staticfile.org/waline/2.15.8/waline.min.js';
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const bodyElement = document.getElementsByTagName('body')[0];
     const htmlElement = document.getElementsByTagName('html')[0];
