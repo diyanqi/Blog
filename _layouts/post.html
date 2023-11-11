@@ -82,22 +82,22 @@ tail_includes:
 
           <i class="fa-solid fa-eye"></i>
           <em>
-            <span id="pageview" class="pageview-count" data-path="Your/Path/Name">
+            <span id="waline_pageview" class="pageview-count" data-path="Your/Path/Name">
               <em id="pv" class="pageviews">
                 <i class="fas fa-spinner fa-spin fa-fw"></i>
               </em>
             </span>
           </em>
           ・
-          <!-- <i class="fa-regular fa-comment"></i>
+          <i class="fa-regular fa-comment"></i>
           <em>
             <span id="waline_comcount" class="waline-comment-count" data-path="Your/Path/Name">
               <em id="pv" class="pageviews">
                 <i class="fas fa-spinner fa-spin fa-fw"></i>
               </em>
             </span>
-          </em> -->
-          <!-- ・ -->
+          </em>
+          ・
           <!-- read time -->
           {% include read-time.html content=content prompt=true lang=lang %}
         </div>
@@ -158,26 +158,5 @@ tail_includes:
   <!-- div.post-tail-wrapper -->
 </article>
 
-<script>
-  async function fetchData() {
-    const pagePath = location.pathname;
-    const pageViewsContainer = document.querySelector('.pageviews');
-    try {
-        const response = await fetch(`https://sl.amzcd.top${pagePath}`, {
-            method: 'PUT'
-        });
-
-        if (response.ok) {
-            const pageViewsData = await response.json();
-            pageViewsContainer.innerHTML = `${pageViewsData.views}`;
-        } else {
-            throw new Error('Failed to fetch page views data');
-        }
-    } catch (error) {
-        console.error(error);
-    }
-  }
-  fetchData();
-</script>
 </body>
 </html>
