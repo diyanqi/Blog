@@ -1,4 +1,11 @@
-<!-- <section id="access-lastmod">
+<section id="access-lastmod">
+    <h2 class="panel-heading">最新评论</h2>
+    <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
+        <div id="waline-recent"></div>
+    </ul>
+</section>
+
+<section id="access-lastmod">
     <h2 class="panel-heading">最新评论</h2>
     <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
         <div id="waline-recent"></div>
@@ -41,7 +48,6 @@
         return textContent;
     }
 
-
     import { RecentComments } from 'https://github.elemecdn.com/@waline/client/dist/waline.mjs';
 
     RecentComments({
@@ -52,4 +58,4 @@
             (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${comment.nick}: ${removeTagsAndTruncate(comment.comment)}</a></li>`
         )).replaceAll(",", "");
     });
-</script> -->
+</script>
