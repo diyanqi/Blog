@@ -1,6 +1,6 @@
 <div id="vcomments"></div>
 <script type="module">
-    import { init } from 'https://github.elemecdn.com/@waline/client/dist/waline.mjs';
+    import { init } from 'https://cdn.staticfile.org/waline/3.0.0-alpha.1/waline.min.js';
     const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const bodyElement = document.getElementsByTagName('body')[0];
     const htmlElement = document.getElementsByTagName('html')[0];
@@ -25,6 +25,7 @@
         reaction: true,
         dark: 'body[color-mode="dark"]',
         comment: true,
+        pageview: true,
         emoji: [
             '//github.elemecdn.com/@waline/emojis@1.1.0/bilibili',
             '//github.elemecdn.com/@waline/emojis@1.1.0/tw-emoji'
@@ -41,14 +42,4 @@
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script>
-
-<script type="module">
-    import { pageviewCount } from 'https://github.elemecdn.com/@waline/client/dist/pageview.mjs';
-
-    pageviewCount({
-        serverURL: 'https://waline.amzcd.top',
-        path: window.location.pathname,
-        update: false
-    });
 </script>
