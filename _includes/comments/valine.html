@@ -24,7 +24,6 @@
         serverURL: 'https://waline.amzcd.top',
         reaction: true,
         dark: 'body[color-mode="dark"]',
-        pageview: true,
         comment: true,
         emoji: [
             '//github.elemecdn.com/@waline/emojis@1.1.0/bilibili',
@@ -42,4 +41,14 @@
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
+</script>
+
+<script type="module">
+    import { pageviewCount } from 'https://github.elemecdn.com/@waline/client/dist/pageview.mjs';
+
+    pageviewCount({
+        serverURL: 'https://waline.amzcd.top',
+        path: window.location.pathname,
+        update: true
+    });
 </script>
