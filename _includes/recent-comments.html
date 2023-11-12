@@ -1,5 +1,5 @@
 <section id="access-lastmod">
-    <h2 class="panel-heading">最新评论</h2>
+    <h2 class="panel-heading">评头论足</h2>
     <ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2">
         <div id="waline-recent"></div>
     </ul>
@@ -47,8 +47,8 @@
         serverURL: 'https://waline.amzcd.top',
         count: 6,
     }).then(({ comments }) => {
-        document.getElementById('waline-recent').innerHTML = String(comments.map(
-            (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${comment.nick}: ${removeTagsAndTruncate(comment.comment)}</a></li>`
+        document.getElementById('waline-recent').innerHTML = String(comments.data.map(
+            (comment) => `<li class="text-truncate lh-lg"> <a style="color: inherit;" href="${comment.url}">${removeTagsAndTruncate(comment.comment)}</a></li>`
         )).replaceAll(",", "");
     });
 </script>
