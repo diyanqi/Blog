@@ -64,14 +64,15 @@
         vcommentsCover.innerHTML = "应相关法规要求，评论系统已停止向中国用户开放.";
 
         var vcommentsDiv = document.getElementById('vcomments');
-        var vcommentRect = vcommentsDiv.getBoundingClientRect();
-        var vcommentsCoverWidth = 200; // 定义"vcommentsCover"元素的宽度
+        vcommentsDiv.style.position = 'relative'; // 确保vcomments有定位属性
 
         vcommentsCover.style.position = 'absolute';
-        vcommentsCover.style.left = vcommentRect.left + (vcommentRect.width - vcommentsCoverWidth) / 2 + 'px';
-        vcommentsCover.style.top = vcommentRect.top + 'px';
+        vcommentsCover.style.top = '0'; // 将vcommentsCover显示在vcomments的顶部
+        vcommentsCover.style.left = '50%'; // 水平居中
+        vcommentsCover.style.transform = 'translateX(-50%)'; // 水平居中
+        vcommentsCover.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
 
-        document.body.appendChild(vcommentsCover);
+        vcommentsDiv.insertBefore(vcommentsCover, vcommentsDiv.firstChild); // 将vcommentsCover插入到vcomments中的第一个子元素前面
     }
 
     const unavaliable_region = ["CN", "TW", "HK", "MO"];
