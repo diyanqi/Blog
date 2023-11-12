@@ -45,6 +45,30 @@
 </script>
 
 <script>
+
+    function disableWaline(){
+        var styleElement = document.createElement('style');
+        var styleContent = `
+        #vcomment {
+            position: relative;
+        }
+        #vcomment::after {
+            content: "停止使用";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        `;
+        styleElement.textContent = styleContent;
+        var headElement = document.head;
+        headElement.appendChild(styleElement);
+    }
+
     const unavaliable_region = ["CN", "TW", "HK", "MO"];
     fetch("https://waline.amzcd.top/ip")
         .then(response => {
@@ -56,7 +80,8 @@
         .then(data => {
             console.log("IP地址：" + data);
             if (unavaliable_region.includes(data)) {
-                document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+                // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+                disableWaline();
             }
         })
         .catch(error => {
