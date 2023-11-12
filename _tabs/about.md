@@ -39,7 +39,7 @@ tail_includes:
 
 本站与 Microsoft Clarity 和 Microsoft Advertising 合作，通过行为指标、热图和会话重播来捕获您使用本站的方式以及与本站的互动，从而改进本站的浏览体验。我们使用第一和第三方 cookie 及其他跟踪技术获取网站使用数据，以确定本站的受欢迎程度和在线活动。此外，我们还将此信息用于网站优化、欺诈/安全目的和广告。有关 Microsoft 如何收集和使用您的数据的详细信息，请访问 [Microsoft 隐私声明](https://privacy.microsoft.com/privacystatement)。
 
-<!-- ---
+---
 
 <div id="vcomments"></div>
 <script type="module">
@@ -60,17 +60,19 @@ tail_includes:
         }
     }
     syncColorMode();
+    document.getElementById("waline_pageview").setAttribute("data-path", window.location.pathname);
+    document.getElementById("waline_comcount").setAttribute("data-path", window.location.pathname);
     init({
         el: '#vcomments',
         serverURL: 'https://waline.amzcd.top',
-        reaction: true,
+        // reaction: true,
         dark: 'body[color-mode="dark"]',
         emoji: [
             '//github.elemecdn.com/@waline/emojis@1.1.0/bilibili',
             '//github.elemecdn.com/@waline/emojis@1.1.0/tw-emoji'
         ],
         locale: {
-            placeholder: '你猜我的评论区在等待谁？（留下邮箱可收取回复通知）'
+            placeholder: '欢迎来小破站歇脚，留点足迹罢……'
         },
         turnstileKey: "0x4AAAAAAAFWv6PMNbfWlJDz"
     });
@@ -81,4 +83,71 @@ tail_includes:
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script> -->
+</script>
+
+<script>
+    function disableWaline() {
+        var styleElement = document.createElement('style');
+        var styleContent = `
+        #vcomments {
+            position: relative;
+        }
+        #vcomments *:not(.cover) {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        `;
+        styleElement.textContent = styleContent;
+        styleElement.id = "styleElement";
+        var headElement = document.head;
+        headElement.appendChild(styleElement);
+        var vcommentsCover = document.createElement('div');
+        vcommentsCover.id = "vcommentsCover";
+        vcommentsCover.innerHTML = `应法规要求，评论系统停止向中国用户开放。<br/><br/><button type="button" class="btn btn-primary cover" aria-label="Update" id="retry">重试</button>`;
+        var vcommentsDiv = document.getElementById('vcomments');
+        vcommentsDiv.style.position = 'relative'; // 确保vcomments有定位属性
+        vcommentsCover.style.position = 'absolute';
+        vcommentsCover.style.top = '0'; // 将vcommentsCover显示在vcomments的顶部
+        vcommentsCover.style.left = '50%'; // 水平居中
+        vcommentsCover.style.textAlign = 'center';
+        vcommentsCover.style.transform = 'translate(-50%, 50%)'; // 水平居中
+        vcommentsCover.style.zIndex = 999;
+        vcommentsCover.setAttribute("class", "cover")
+        vcommentsDiv.insertBefore(vcommentsCover, vcommentsDiv.firstChild); // 将vcommentsCover插入到vcomments中的第一个子元素前面
+
+        document.getElementById("retry").onclick = function () {
+            checkRegion();
+        };
+    }
+
+    function checkRegion() {
+        const unavaliable_region = ["CN", "TW", "HK", "MO"];
+        fetch("https://waline.amzcd.top/ip")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text(); // or use response.json() if the response is JSON
+            })
+            .then(data => {
+                console.log("IP地址：" + data);
+                var vcommentElement = document.getElementById("vcommentsCover");
+                if (vcommentElement) {
+                    vcommentElement.parentNode.removeChild(vcommentElement);
+                }
+                var styleElement = document.getElementById("styleElement");
+                if (styleElement) {
+                    styleElement.parentNode.removeChild(styleElement);
+                }
+                if (unavaliable_region.includes(data)) {
+                    // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+                    disableWaline();
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error: " + error);
+            });
+    }
+
+    checkRegion();
+</script>

@@ -49,7 +49,7 @@ tail_includes:
 
 以上链接随机排序，每次刷新都会不一样～
 
-<!-- ---
+---
 
 <div id="vcomments"></div>
 <script type="module">
@@ -70,17 +70,19 @@ tail_includes:
         }
     }
     syncColorMode();
+    document.getElementById("waline_pageview").setAttribute("data-path", window.location.pathname);
+    document.getElementById("waline_comcount").setAttribute("data-path", window.location.pathname);
     init({
         el: '#vcomments',
         serverURL: 'https://waline.amzcd.top',
-        reaction: true,
+        // reaction: true,
         dark: 'body[color-mode="dark"]',
         emoji: [
             '//github.elemecdn.com/@waline/emojis@1.1.0/bilibili',
             '//github.elemecdn.com/@waline/emojis@1.1.0/tw-emoji'
         ],
         locale: {
-            placeholder: '欢迎互挂友链！记得备注您的博客地址、名称和标语（留下邮箱可收取回复通知）！'
+            placeholder: '记得留下贵站的名称、网址与简介哦～'
         },
         turnstileKey: "0x4AAAAAAAFWv6PMNbfWlJDz"
     });
@@ -91,4 +93,71 @@ tail_includes:
         syncColorMode();
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
-</script> -->
+</script>
+
+<script>
+    function disableWaline() {
+        var styleElement = document.createElement('style');
+        var styleContent = `
+        #vcomments {
+            position: relative;
+        }
+        #vcomments *:not(.cover) {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        `;
+        styleElement.textContent = styleContent;
+        styleElement.id = "styleElement";
+        var headElement = document.head;
+        headElement.appendChild(styleElement);
+        var vcommentsCover = document.createElement('div');
+        vcommentsCover.id = "vcommentsCover";
+        vcommentsCover.innerHTML = `应法规要求，评论系统停止向中国用户开放。<br/><br/><button type="button" class="btn btn-primary cover" aria-label="Update" id="retry">重试</button>`;
+        var vcommentsDiv = document.getElementById('vcomments');
+        vcommentsDiv.style.position = 'relative'; // 确保vcomments有定位属性
+        vcommentsCover.style.position = 'absolute';
+        vcommentsCover.style.top = '0'; // 将vcommentsCover显示在vcomments的顶部
+        vcommentsCover.style.left = '50%'; // 水平居中
+        vcommentsCover.style.textAlign = 'center';
+        vcommentsCover.style.transform = 'translate(-50%, 50%)'; // 水平居中
+        vcommentsCover.style.zIndex = 999;
+        vcommentsCover.setAttribute("class", "cover")
+        vcommentsDiv.insertBefore(vcommentsCover, vcommentsDiv.firstChild); // 将vcommentsCover插入到vcomments中的第一个子元素前面
+
+        document.getElementById("retry").onclick = function () {
+            checkRegion();
+        };
+    }
+
+    function checkRegion() {
+        const unavaliable_region = ["CN", "TW", "HK", "MO"];
+        fetch("https://waline.amzcd.top/ip")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text(); // or use response.json() if the response is JSON
+            })
+            .then(data => {
+                console.log("IP地址：" + data);
+                var vcommentElement = document.getElementById("vcommentsCover");
+                if (vcommentElement) {
+                    vcommentElement.parentNode.removeChild(vcommentElement);
+                }
+                var styleElement = document.getElementById("styleElement");
+                if (styleElement) {
+                    styleElement.parentNode.removeChild(styleElement);
+                }
+                if (unavaliable_region.includes(data)) {
+                    // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+                    disableWaline();
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error: " + error);
+            });
+    }
+
+    checkRegion();
+</script>
