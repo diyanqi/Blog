@@ -66,18 +66,13 @@
         var vcommentsDiv = document.getElementById('vcomments');
         var vcommentRect = vcommentsDiv.getBoundingClientRect();
         var vcommentsCoverWidth = 200; // 定义"vcommentsCover"元素的宽度
-        var vcommentsCoverHeight = 50; // 定义"vcommentsCover"元素的高度
-
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
         vcommentsCover.style.position = 'absolute';
-        vcommentsCover.style.left = vcommentRect.left + scrollLeft + (vcommentRect.width - vcommentsCoverWidth) / 2 + 'px';
-        vcommentsCover.style.top = vcommentRect.top + scrollTop - vcommentsCoverHeight + 'px';
+        vcommentsCover.style.left = vcommentRect.left + (vcommentRect.width - vcommentsCoverWidth) / 2 + 'px';
+        vcommentsCover.style.top = vcommentRect.top + 'px';
 
         document.body.appendChild(vcommentsCover);
     }
-
 
     const unavaliable_region = ["CN", "TW", "HK", "MO"];
     fetch("https://waline.amzcd.top/ip")
