@@ -22,7 +22,7 @@ tail_includes:
         ["没有楼的楼长", "https://blog.imlzhyt.top/", "没有楼的楼长的咕咕咕博客"],
         ["🍋OIso🔍", "https://www.oiso.cf", "一款为 OIer 和开发者而生的搜索引擎"],
         ["CS Academy Graph Editor", "/app/graph_editor", "在线图论作图工具 源码来自 github.com/Eletary/graph_editor"],
-        ["Heyc 的主页", "https://www.hycqwq.top/", "hyc 牌高性能发电机官方网站"],
+        ["Heyc's Blog", "https://blog.hycqwq.top/", "OIer & SMSer 的垃圾场（？"],
     ];
     // 定义一个随机排序函数
     function randomSort() {
