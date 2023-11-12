@@ -43,3 +43,19 @@
     });
     observer.observe(htmlElement, { attributes: true, attributeOldValue: true });
 </script>
+
+<script>
+    fetch("https://waline.amzcd.top/ip")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.text(); // or use response.json() if the response is JSON
+        })
+        .then(data => {
+            console.log("IP地址：" + data);
+        })
+        .catch(error => {
+            console.error("Fetch error: " + error);
+        });
+</script>
