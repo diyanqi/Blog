@@ -52,7 +52,7 @@
     #vcomments {
         position: relative;
     }
-    #vcomments *:not(#vcommentsCover) {
+    #vcomments *:not(.cover) {
         filter: blur(5px);
         pointer-events: none;
     }
@@ -63,7 +63,7 @@
 
         var vcommentsCover = document.createElement('div');
         vcommentsCover.id = "vcommentsCover";
-        vcommentsCover.innerHTML = "应相关法规要求，评论系统已停止向中国用户开放.";
+        vcommentsCover.innerHTML = `应相关法规要求，评论系统已停止向中国用户开放。<br/><button class="cover">重试</button>`;
 
         var vcommentsDiv = document.getElementById('vcomments');
         vcommentsDiv.style.position = 'relative'; // 确保vcomments有定位属性
@@ -71,7 +71,9 @@
         vcommentsCover.style.position = 'absolute';
         vcommentsCover.style.top = '0'; // 将vcommentsCover显示在vcomments的顶部
         vcommentsCover.style.left = '50%'; // 水平居中
-        vcommentsCover.style.transform = 'translateX(-50%)'; // 水平居中
+        vcommentsCover.style.textAlign = 'center';
+        vcommentsCover.style.transform = 'translate(-50%, 50%)'; // 水平居中
+        vcommentsCover.setAttribute("class", "cover")
 
         vcommentsDiv.insertBefore(vcommentsCover, vcommentsDiv.firstChild); // 将vcommentsCover插入到vcomments中的第一个子元素前面
     }
