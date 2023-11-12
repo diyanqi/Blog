@@ -2,6 +2,8 @@
 title: 友链
 icon: fas fa-link
 order: 5
+tail_includes:
+- comments
 ---
 
 ### 欢迎互挂友链～
