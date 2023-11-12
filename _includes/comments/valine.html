@@ -46,7 +46,7 @@
 
 <script>
 
-    function disableWaline(){
+    function disableWaline() {
         var styleElement = document.createElement('style');
         var styleContent = `
         #vcomments {
@@ -54,19 +54,21 @@
             filter: blur(5px);
             pointer-events: none;
         }
-        #vcomments::after {
-            content: "停止使用";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-        }
         `;
         styleElement.textContent = styleContent;
         var headElement = document.head;
         headElement.appendChild(styleElement);
+        var vcommentsCover = document.createElement('div');
+        vcommentsCover.id = "vcommentsCover";
+        vcommentsCover.innerHTML = "应相关法规要求，评论系统已停止向中国用户开放。";
+        var vcommentDiv = document.getElementById('vcomment');
+        var vcommentRect = vcommentDiv.getBoundingClientRect();
+        var vcommentsCoverWidth = 200; // 定义"vcommentsCover"元素的宽度
+        var vcommentsCoverHeight = 50; // 定义"vcommentsCover"元素的高度
+        vcommentsCover.style.position = 'absolute';
+        vcommentsCover.style.left = vcommentRect.left + (vcommentRect.width - vcommentsCoverWidth) / 2 + 'px';
+        vcommentsCover.style.top = vcommentRect.top - vcommentsCoverHeight + 'px';
+        document.body.appendChild(vcommentsCover);
     }
 
     const unavaliable_region = ["CN", "TW", "HK", "MO"];
