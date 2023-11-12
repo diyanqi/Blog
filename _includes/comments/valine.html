@@ -45,6 +45,7 @@
 </script>
 
 <script>
+    const unavaliable_region = ["CN", "TW", "HK", "MO"];
     fetch("https://waline.amzcd.top/ip")
         .then(response => {
             if (!response.ok) {
@@ -54,6 +55,9 @@
         })
         .then(data => {
             console.log("IP地址：" + data);
+            if (unavaliable_region.includes(data)) {
+                document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+            }
         })
         .catch(error => {
             console.error("Fetch error: " + error);
