@@ -2,8 +2,6 @@
 title: 友链
 icon: fas fa-link
 order: 5
-tail_includes:
-- comments
 ---
 
 ### 欢迎互挂友链～
@@ -70,8 +68,6 @@ tail_includes:
         }
     }
     syncColorMode();
-    document.getElementById("waline_pageview").setAttribute("data-path", window.location.pathname);
-    document.getElementById("waline_comcount").setAttribute("data-path", window.location.pathname);
     init({
         el: '#vcomments',
         serverURL: 'https://waline.amzcd.top',

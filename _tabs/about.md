@@ -2,8 +2,6 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
-tail_includes:
-- comments
 ---
 
 > Hi~👋 欢迎访问我的博客！
@@ -60,8 +58,6 @@ tail_includes:
         }
     }
     syncColorMode();
-    document.getElementById("waline_pageview").setAttribute("data-path", window.location.pathname);
-    document.getElementById("waline_comcount").setAttribute("data-path", window.location.pathname);
     init({
         el: '#vcomments',
         serverURL: 'https://waline.amzcd.top',
