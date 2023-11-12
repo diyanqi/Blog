@@ -45,18 +45,18 @@
 </script>
 
 <script>
+
     function disableWaline() {
         var styleElement = document.createElement('style');
         var styleContent = `
-        #vcomments {
-            position: relative;
-            filter: blur(5px);
-            pointer-events: none;
-        }
-        #vcommentsCover {
-            background: rgba(255, 255, 255, 0.8);
-        }
-        `;
+    #vcomments {
+        position: relative;
+    }
+    #vcomments *:not(#vcommentsCover) {
+        filter: blur(5px);
+        pointer-events: none;
+    }
+    `;
         styleElement.textContent = styleContent;
         var headElement = document.head;
         headElement.appendChild(styleElement);
