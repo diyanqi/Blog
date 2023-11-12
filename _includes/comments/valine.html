@@ -90,22 +90,17 @@
             })
             .then(data => {
                 console.log("IP地址：" + data);
+                var vcommentElement = document.getElementById("vcommentsCover");
+                if (vcommentElement) {
+                    vcommentElement.parentNode.removeChild(vcommentElement);
+                }
+                var styleElement = document.getElementById("styleElement");
+                if (styleElement) {
+                    styleElement.parentNode.removeChild(styleElement);
+                }
                 if (unavaliable_region.includes(data)) {
                     // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
                     disableWaline();
-                } else {
-                    try {
-                        var vcommentElement = document.getElementById("vcommentsCover");
-                        if (vcommentElement) {
-                            vcommentElement.parentNode.removeChild(vcommentElement);
-                        }
-                        var styleElement = document.getElementById("styleElement");
-                        if (styleElement) {
-                            styleElement.parentNode.removeChild(styleElement);
-                        }
-                    } finally {
-                        ;
-                    }
                 }
             })
             .catch(error => {
