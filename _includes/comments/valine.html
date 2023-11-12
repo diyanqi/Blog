@@ -45,55 +45,71 @@
 </script>
 
 <script>
-
     function disableWaline() {
         var styleElement = document.createElement('style');
         var styleContent = `
-    #vcomments {
-        position: relative;
-    }
-    #vcomments *:not(.cover) {
-        filter: blur(5px);
-        pointer-events: none;
-    }
-    `;
+        #vcomments {
+            position: relative;
+        }
+        #vcomments *:not(.cover) {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        `;
         styleElement.textContent = styleContent;
+        styleElement.id = "styleElement";
         var headElement = document.head;
         headElement.appendChild(styleElement);
-
         var vcommentsCover = document.createElement('div');
         vcommentsCover.id = "vcommentsCover";
-        vcommentsCover.innerHTML = `应相关法规要求，评论系统已停止向中国用户开放。<br/><button type="button" class="btn btn-primary cover" aria-label="Update">重试</button>`;
-
+        vcommentsCover.innerHTML = `应法规要求，评论系统停止向中国用户开放。<br/><button type="button" class="btn btn-primary cover" aria-label="Update" id="retry">重试</button>`;
         var vcommentsDiv = document.getElementById('vcomments');
         vcommentsDiv.style.position = 'relative'; // 确保vcomments有定位属性
-
         vcommentsCover.style.position = 'absolute';
         vcommentsCover.style.top = '0'; // 将vcommentsCover显示在vcomments的顶部
         vcommentsCover.style.left = '50%'; // 水平居中
         vcommentsCover.style.textAlign = 'center';
         vcommentsCover.style.transform = 'translate(-50%, 50%)'; // 水平居中
+        vcommentsCover.style.zIndex = 999;
         vcommentsCover.setAttribute("class", "cover")
-
         vcommentsDiv.insertBefore(vcommentsCover, vcommentsDiv.firstChild); // 将vcommentsCover插入到vcomments中的第一个子元素前面
+
+        document.getElementById("retry").onclick = function () {
+            location.reload();
+        };
     }
 
-    const unavaliable_region = ["CN", "TW", "HK", "MO"];
-    fetch("https://waline.amzcd.top/ip")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.text(); // or use response.json() if the response is JSON
-        })
-        .then(data => {
-            console.log("IP地址：" + data);
-            if (unavaliable_region.includes(data)) {
-                // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
-                disableWaline();
-            }
-        })
-        .catch(error => {
-            console.error("Fetch error: " + error);
-        });
+    function checkRegion() {
+        const unavaliable_region = ["CN", "TW", "HK", "MO"];
+        fetch("https://waline.amzcd.top/ip")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text(); // or use response.json() if the response is JSON
+            })
+            .then(data => {
+                console.log("IP地址：" + data);
+                if (unavaliable_region.includes(data)) {
+                    // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
+                    disableWaline();
+                } else {
+                    try {
+                        var vcommentElement = document.getElementById("vcommentsCover");
+                        if (vcommentElement) {
+                            vcommentElement.parentNode.removeChild(vcommentElement);
+                        }
+                        var styleElement = document.getElementById("styleElement");
+                        if (styleElement) {
+                            styleElement.parentNode.removeChild(styleElement);
+                        }
+                    } finally {
+                        ;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error: " + error);
+            });
+    }
 </script>
