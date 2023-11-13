@@ -118,7 +118,7 @@ order: 4
 
     function checkRegion() {
         const unavaliable_region = ["CN", "TW", "HK", "MO"];
-        fetch("https://waline.amzcd.top/ip")
+        fetch("https://fast.amzcd.top/ip")
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
