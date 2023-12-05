@@ -33,16 +33,31 @@ order: 5
 
     const showPlace = document.getElementById("showPlace");
     for (i in Links) {
-        showPlace.innerHTML += `<div class="col">
-            <a href="${Links[i][1]}" class="card post-preview h-100" target="_blank">
-                <div class="card-body"> <em class="small">${Links[i][1]}</em>
-                    <h4 class="pt-0 my-2" data-toc-skip="">${Links[i][0]}</h4>
-                    <div class="text-muted small">
-                        <p>${Links[i][2]}</p>
-                    </div>
-                </div>
-            </a>
-        </div>`;
+        // showPlace.innerHTML += `<div class="col">
+        //     <a href="${Links[i][1]}" class="card post-preview h-100" target="_blank">
+        //         <div class="card-body"> <em class="small">${Links[i][1]}</em>
+        //             <h4 class="pt-0 my-2" data-toc-skip="">${Links[i][0]}</h4>
+        //             <div class="text-muted small">
+        //                 <p>${Links[i][2]}</p>
+        //             </div>
+        //         </div>
+        //     </a>
+        // </div>`;
+        showPLace.innerHTML += `<article class="card-wrapper card">
+<a href="${Links[i][1]}" class="post-preview row g-0 flex-md-row-reverse">
+<div class="col-md-5">
+<div class="preview-img"><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.b-_FEySaJyBsVZ-_9UDfJgHaHZ" alt="Preview Image" loading="lazy"></div>
+</div>
+<div class="col-md-7">
+<div class="card-body d-flex flex-column">
+<h1 class="card-title my-2 mt-md-0">${Links[i][0]}</h1>
+<div class="card-text content mt-0 mb-3">
+<p>${Links[i][2]}</p>
+</div>
+</div>
+</div>
+</a>
+</article>`
     }
 </script>
 
