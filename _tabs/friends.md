@@ -43,7 +43,7 @@ order: 5
         //         </div>
         //     </a>
         // </div>`;
-        showPLace.innerHTML += `<article class="card-wrapper card">
+        showPlace.innerHTML += `<article class="card-wrapper card">
 <a href="${Links[i][1]}" class="post-preview row g-0 flex-md-row-reverse">
 <div class="col-md-5">
 <div class="preview-img"><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.b-_FEySaJyBsVZ-_9UDfJgHaHZ" alt="Preview Image" loading="lazy"></div>
