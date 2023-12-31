@@ -17,7 +17,7 @@ order: 5
         ["zhoulingyu的小站", "https://www.luogu.com.cn/blog/zhoulingyu/", "当神已无能为力，那便是魔渡众生"],
         ["__KrNalty__ 的小窝 ~", "https://www.luogu.com.cn/blog/LuoguBeiChe/", "星星之火，可以燎原"],
         ["Nano_core の 小窝~", "https://www.luogu.com.cn/blog/YinWeiLove/", "这个家伙很勤快，什么都留下了"],
-        ["没有楼的楼长", "https://blog.imlzhyt.top/", "没有楼的楼长的咕咕咕博客"],
+        ["没有楼的楼长", "https://blog.sdnie.fun/", "没有楼的楼长的咕咕咕博客"],
         ["🍋OIso🔍", "https://www.oiso.cf", "一款为 OIer 和开发者而生的搜索引擎"],
         ["CS Academy Graph Editor", "/app/graph_editor", "在线图论作图工具 源码来自 github.com/Eletary/graph_editor"],
         ["Heyc's Blog", "https://blog.hycqwq.top/", "OIer & SMSer 的垃圾场（？"],
