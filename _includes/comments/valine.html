@@ -81,7 +81,7 @@
 
     function checkRegion() {
         const unavaliable_region = ["CN", "TW", "HK", "MO"];
-        fetch("https://fast.amzcd.top/ip")
+        fetch("https://ipapi.co/country_code")
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -101,6 +101,8 @@
                 if (unavaliable_region.includes(data)) {
                     // document.getElementById("vcomments").setAttribute("style", "filter: blur(20px);");
                     disableWaline();
+                } else {
+                    clearInterval(intervalID);
                 }
             })
             .catch(error => {
@@ -108,5 +110,5 @@
             });
     }
     disableWaline();
-    checkRegion();
+    var intervalID = setInterval(checkRegion, 5000);
 </script>
