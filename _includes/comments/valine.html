@@ -112,4 +112,23 @@
     disableWaline();
     checkRegion();
     var intervalID = setInterval(checkRegion, 5000);
+    window.ikun = 0;
+    function cxk(){
+        window.ikun += 1;
+        if (window.ikun >= 5) {
+            try {
+                clearInterval(intervalID);
+                var vcommentElement = document.getElementById("vcommentsCover");
+                if (vcommentElement) {
+                    vcommentElement.parentNode.removeChild(vcommentElement);
+                }
+                var styleElement = document.getElementById("styleElement");
+                if (styleElement) {
+                    styleElement.parentNode.removeChild(styleElement);
+                }
+            } finally {
+                ;
+            }
+        }
+    }
 </script>
