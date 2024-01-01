@@ -85,6 +85,15 @@
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
+                    var vcommentElement = document.getElementById("vcommentsCover");
+                    if (vcommentElement) {
+                        vcommentElement.parentNode.removeChild(vcommentElement);
+                    }
+                    var styleElement = document.getElementById("styleElement");
+                    if (styleElement) {
+                        styleElement.parentNode.removeChild(styleElement);
+                    }
+                    disableWaline();
                 }
                 return response.text(); // or use response.json() if the response is JSON
             })
@@ -111,7 +120,7 @@
     }
     disableWaline();
     checkRegion();
-    var intervalID = setInterval(checkRegion, 5000);
+    var intervalID = setInterval(checkRegion, 15000);
     window.ikun = 0;
     function cxk(){
         window.ikun += 1;
